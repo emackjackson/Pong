@@ -7,18 +7,20 @@ public class Ball : MonoBehaviour
 
     void Start()
     {
-        ResetAndLaunch(toRight: Random.value >= 0.5f);
+        ResetAndLaunch();
     }
 
-    public void ResetAndLaunch(bool toRight)
+    public void ResetAndLaunch()
     {
         rb.linearVelocity = Vector2.zero;
         transform.position = Vector3.zero;
 
-        float y = Random.Range(-0.8f, 0.8f);
-        if (Mathf.Abs(y) < 0.2f) y = Mathf.Sign(Random.value - 0.5f) * 0.2f;
+        float xVelocity = (UnityEngine.Random.value >= 0.5f) ? 1f : -1f;
+        float yVelocity = UnityEngine.Random.Range(-1f, 1f);
 
-        Vector2 dir = new Vector2(toRight ? 1f : -1f, y).normalized;
-        rb.linearVelocity = dir * startingSpeed;
+        if (Mathf.Abs(yVelocity) < 0.2f)
+            yVelocity = Mathf.Sign(yVelocity == 0 ? (Random.value - 0.5f) : yVelocity) * 0.2f;
+
+        rb.linearVelocity = new Vector2(xVelocity * startingSpeed, yVelocity * startingSpeed);
     }
 }
