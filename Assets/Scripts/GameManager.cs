@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class GameManager : MonoBehaviour
     public int playerOneScore = 0;
     public int playerTwoScore = 0;
     public int maxScore = 5;
+
+    public TextMeshProUGUI player1ScoreText;
+    public TextMeshProUGUI player2ScoreText;
 
     void Awake()
     {
@@ -24,12 +28,14 @@ public class GameManager : MonoBehaviour
     public void IncreasePlayerOneScore()
     {
         playerOneScore++;
+        player1ScoreText.text = playerOneScore.ToString();
         CheckForWin();
     }
 
     public void IncreasePlayerTwoScore()
     {
         playerTwoScore++;
+        player2ScoreText.text = playerTwoScore.ToString();
         CheckForWin();
     }
 
