@@ -22,8 +22,6 @@ public class UpdatePlayer2Score : MonoBehaviour
     {
         if (other.CompareTag("ball"))
         {
-            Debug.Log("Ball collided with " + gameObject.name);
-
             GameManager.Instance.IncreasePlayerTwoScore();
 
             ball.ResetAndLaunch();

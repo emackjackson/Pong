@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player2 : MonoBehaviour
 {
     public float moveSpeed;
+    public bool canMove = true;
     public Vector2 bounds = new() { x = -4.2f, y = 4.2f };
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,6 +19,9 @@ public class Player2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance == null || !GameManager.Instance.IsPlaying || !canMove)
+            return;
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(moveSpeed * Time.deltaTime * Vector2.up);
